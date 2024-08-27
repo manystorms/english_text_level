@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 Future<List<dynamic>> getApi(final String englishText, final String targetEnglishLevel) async {
-  const serverUrl = 'http://192.168.1.111:8080/echo?message=';
+  const serverUrl = 'http://sodkqkxk.pythonanywhere.com/echo?message=';
   const serverUrl2 = '&level=';
   final String englishTextEncodedQuery = Uri.encodeComponent(englishText);
   final String targetElglishLevelEncodedQuery = Uri.encodeComponent(targetEnglishLevel);
@@ -12,7 +12,7 @@ Future<List<dynamic>> getApi(final String englishText, final String targetEnglis
     print(Uri.parse(serverUrl+englishTextEncodedQuery+serverUrl2+targetElglishLevelEncodedQuery));
     final response = await http.get(Uri.parse(serverUrl+englishTextEncodedQuery+serverUrl2+targetElglishLevelEncodedQuery))
         .timeout(const Duration(seconds: 10));
-    print(json.decode(response.body));
+    print(response.body);
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
